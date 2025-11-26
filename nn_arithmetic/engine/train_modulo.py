@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 from nn_arithmetic.dataset.modulo_addition import ModuloAdditionDataset
 from nn_arithmetic.model.transformer import ModuloTransformer
-from nn_arithmetic.trainer.logging import WBLogger
+from nn_arithmetic.engine.logging import WBLogger
 
 
 def train_modulo_adder(modulo_factor: int = 113, epochs: int = 100, batch_size: int = 64):

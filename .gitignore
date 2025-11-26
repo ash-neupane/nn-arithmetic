@@ -1,10 +1,9 @@
-# data
+# data logs and artifacts
 data/
 *.csv
 *.txt
 *.npz
-
-# logging
+artifacts/
 logs/
 wandb/
 

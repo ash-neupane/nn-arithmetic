@@ -11,6 +11,7 @@ torch = {url = "https://download.pytorch.org/whl/cpu/torch-1.13.1-cp310-none-mac
 tqdm = "*"
 wandb = "^0.23.0"
 python-dotenv = "^1.2.1"
+tokenizers = "^0.21.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
