@@ -9,7 +9,7 @@ from nn_arithmetic.model.language_model import GPTTransformer
 from nn_arithmetic.tokenizer import ShakespeareTokenizer
 
 
-def train_language_model(epochs: int = 100, batch_size: int = 32, seq_length: int = 128, lr: float = 3e-4):
+def train_language_model(epochs: int = 100, batch_size: int = 16, seq_length: int = 128, lr: float = 3e-4):
     d_model = 128
     nhead = 4
     num_layers = 4
