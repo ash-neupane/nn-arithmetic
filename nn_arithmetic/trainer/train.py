@@ -78,28 +78,33 @@ def train_modulo_adder(modulo_factor: int = 113, epochs: int = 100, batch_size: 
         model.eval()
         val_correct = 0
         val_total = 0
+        val_loss = 0.0
 
         with torch.no_grad():
             for inputs, targets in val_loader:
                 inputs, targets = inputs.to(device), targets.to(device)
                 outputs = model(inputs)
+                loss = criterion(outputs, targets)
+                val_loss += loss.item()
                 _, predicted = outputs.max(1)
                 val_total += targets.size(0)
                 val_correct += predicted.eq(targets).sum().item()
 
         train_acc = 100. * train_correct / train_total
         val_acc = 100. * val_correct / val_total
-        avg_loss = train_loss / len(train_loader)
+        avg_train_loss = train_loss / len(train_loader)
+        avg_val_loss = val_loss / len(val_loader)
 
         logger.log({
             "epoch": epoch + 1,
-            "train/avg_loss": avg_loss,
+            "train/avg_loss": avg_train_loss,
             "train/accuracy": train_acc,
+            "val/avg_loss": avg_val_loss,
             "val/accuracy": val_acc
         }, step=global_step)
 
         if (epoch + 1) % 10 == 0:
-            pbar.write(f"Epoch {epoch+1}/{epochs} | Loss: {avg_loss:.4f} | "
+            pbar.write(f"Epoch {epoch+1}/{epochs} | Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f} | "
                        f"Train Acc: {train_acc:.2f}% | Val Acc: {val_acc:.2f}%")
 
     pbar.close()
