@@ -3,8 +3,9 @@ import torch.nn as nn
 
 
 class ModuloTransformer(nn.Module):
-    def __init__(self, modulo_factor: int, d_model: int = 64, nhead: int = 4,
-                 num_layers: int = 2, dim_feedforward: int = 128):
+    def __init__(
+        self, modulo_factor: int, d_model: int = 64, nhead: int = 4, num_layers: int = 2, dim_feedforward: int = 128
+    ):
         super().__init__()
         self.modulo_factor = modulo_factor
         self.d_model = d_model
@@ -13,10 +14,7 @@ class ModuloTransformer(nn.Module):
         self.pos_encoding = nn.Parameter(torch.randn(2, d_model))
 
         encoder_layer = nn.TransformerEncoderLayer(
-            d_model=d_model,
-            nhead=nhead,
-            dim_feedforward=dim_feedforward,
-            batch_first=True
+            d_model=d_model, nhead=nhead, dim_feedforward=dim_feedforward, batch_first=True
         )
         self.transformer = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
 
