@@ -1,5 +1,9 @@
 # data logs and artifacts
-data/
+data/*
+!data/README.md
+!data/*/
+data/*/*
+!data/*/README.md
 *.csv
 *.txt
 *.npz
